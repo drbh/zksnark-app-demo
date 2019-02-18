@@ -111,7 +111,7 @@ def compute_witness_docker(numerical_input, h0, h1):
         numerical_input + " " + str(h0) + " " + str(h1) + "'", shell=True)
 
     with open(cfg["app_location"] +
-              'code/preimage/witness', 'r') as myfile:
+              '/code/preimage/witness', 'r') as myfile:
         data = myfile.read().replace('\n', '')
 
     return data
@@ -209,12 +209,6 @@ def verify():
     print(json.dumps(proof, indent=4))
     r = transact_proof_eth(proof)
     return json.dumps({"response": r})
-
-
-@app.route("/prove")
-def prove():
-    r = create_witness_and_make_proof("3478344775")
-    return json.dumps(r)
 
 
 @app.route("/deploy")
